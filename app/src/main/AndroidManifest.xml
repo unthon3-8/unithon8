@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="가판대"
+            android:label="매일장"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
         <activity
             android:theme="@style/AppTheme.NoActionBar"
             android:name=".FarmActivity"
-            android:label="농장정보">
+            android:label="가판대">
 
         </activity>
     </application>
