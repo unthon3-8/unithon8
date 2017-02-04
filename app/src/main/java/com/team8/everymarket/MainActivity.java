@@ -43,11 +43,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(id == R.id.nav_meal1) {
             startActivity((new Intent(this, OrderActivity.class)).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
-        }
-        else if(id == R.id.nav_meal2) {
+        } else if(id == R.id.nav_meal2) {
             startActivity((new Intent(this, BasketActivity.class)).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+        } else if(id == R.id.nav_meal3) {
+            Intent intent = new Intent( Intent.ACTION_VIEW );
+            Uri facebookUrl = Uri.parse( "http://www.facebook.com/DDPFarmersmarket/?fref=ts" );
+            intent.setData(facebookUrl);
+            startActivity( intent );
         }
-        
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
