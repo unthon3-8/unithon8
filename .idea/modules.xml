@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EveryMarket.iml" filepath="$PROJECT_DIR$/EveryMarket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unithon8.iml" filepath="$PROJECT_DIR$/unithon8.iml" />
     </modules>
   </component>
 </project>
