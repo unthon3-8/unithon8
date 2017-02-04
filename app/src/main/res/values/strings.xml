@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EveryMarket</string>
+    <string name="app_name">매일장</string>
     <string name="nav_meal1">장바구니</string>
     <string name="nav_meal2">주문내역</string>
     <string name="nav_meal3">공지사항</string>
