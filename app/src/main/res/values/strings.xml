@@ -3,4 +3,8 @@
     <string name="nav_meal1">장바구니</string>
     <string name="nav_meal2">주문내역</string>
     <string name="nav_meal3">공지사항</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
 </resources>
