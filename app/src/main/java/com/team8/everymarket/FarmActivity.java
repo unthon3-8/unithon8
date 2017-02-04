@@ -15,11 +15,7 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by ichaeeun on 2017. 2. 4..
- */
-
-public class BasketActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class FarmActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -27,7 +23,7 @@ public class BasketActivity extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_basket);
+        setContentView(R.layout.activity_farm);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -40,15 +36,15 @@ public class BasketActivity extends AppCompatActivity implements NavigationView.
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().findItem(R.id.nav_meal1).setChecked(true);
+        navigationView.getMenu().findItem(R.id.nav_meal2).setChecked(true);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.nav_meal2) {
-            startActivity((new Intent(this, OrderActivity.class)).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+        if(id == R.id.nav_meal1) {
+            startActivity((new Intent(this, BasketActivity.class)).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
         }  else if(id == R.id.nav_meal3) {
             Intent intent = new Intent( Intent.ACTION_VIEW );
             Uri facebookUrl = Uri.parse( "http://www.facebook.com/DDPFarmersmarket/?fref=ts" );

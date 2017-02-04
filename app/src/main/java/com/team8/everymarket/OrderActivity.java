@@ -15,6 +15,10 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Created by ichaeeun on 2017. 2. 4..
+ */
+
 public class OrderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     @BindView(R.id.toolbar)

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.team8.everymarket.R;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
@@ -21,7 +23,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_list, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.farm_list_item, null);
         RecyclerViewHolders rcv = new RecyclerViewHolders(layoutView);
         return rcv;
     }

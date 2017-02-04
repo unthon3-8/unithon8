@@ -9,17 +9,30 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.team8.everymarket.main.ItemObject;
+import com.team8.everymarket.main.RecyclerViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+/**
+ * Created by ichaeeun on 2017. 2. 4..
+ */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    private LinearLayoutManager lLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +50,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        List<ItemObject> rowListItem = getAllItemList();
+        lLayout = new LinearLayoutManager(MainActivity.this);
+
+        RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
+        rView.setLayoutManager(lLayout);
+
+        RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(MainActivity.this, rowListItem);
+        rView.setAdapter(rcAdapter);
     }
 
     @Override
@@ -57,5 +79,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private List<ItemObject> getAllItemList(){
+
+        List<ItemObject> allItems = new ArrayList<ItemObject>();
+        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
+        allItems.add(new ItemObject("새아침농장", R.drawable.new_morning_farm));
+        allItems.add(new ItemObject("우포농장", R.drawable.upo_farm));
+        allItems.add(new ItemObject("아름농원", R.drawable.beautiful_farm));
+        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
+        allItems.add(new ItemObject("우포농장", R.drawable.upo_farm));
+        allItems.add(new ItemObject("아름농원", R.drawable.beautiful_farm));
+        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
+
+        return allItems;
     }
 }
