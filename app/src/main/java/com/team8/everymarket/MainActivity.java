@@ -13,6 +13,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.team8.everymarket.main.ItemObject;
 import com.team8.everymarket.main.RecyclerViewAdapter;
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private LinearLayoutManager lLayout;
+    private RecyclerView rView;
+    private List<ItemObject> rowListItem;
+
+    //Back 키 두번 클릭 여부 확인
+    private final long FINSH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        List<ItemObject> rowListItem = getAllItemList();
+        rowListItem = getAllItemList();
         lLayout = new LinearLayoutManager(MainActivity.this);
 
-        RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
+        rView = (RecyclerView)findViewById(R.id.recycler_view);
         rView.setLayoutManager(lLayout);
 
-        RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(MainActivity.this, rowListItem);
+        RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(MainActivity.this, rowListItem, clickEvent);
         rView.setAdapter(rcAdapter);
     }
 
@@ -83,15 +91,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private List<ItemObject> getAllItemList(){
 
         List<ItemObject> allItems = new ArrayList<ItemObject>();
-        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
-        allItems.add(new ItemObject("새아침농장", R.drawable.new_morning_farm));
-        allItems.add(new ItemObject("우포농장", R.drawable.upo_farm));
-        allItems.add(new ItemObject("아름농원", R.drawable.beautiful_farm));
-        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
-        allItems.add(new ItemObject("우포농장", R.drawable.upo_farm));
-        allItems.add(new ItemObject("아름농원", R.drawable.beautiful_farm));
-        allItems.add(new ItemObject("현강농원", R.drawable.hyungang_farm));
+        allItems.add(new ItemObject(0,"현강농원", R.drawable.hyungang_farm));
+        allItems.add(new ItemObject(1,"새아침농장", R.drawable.new_morning_farm));
+        allItems.add(new ItemObject(2,"우포농장", R.drawable.upo_farm));
+        allItems.add(new ItemObject(3,"아름농원", R.drawable.beautiful_farm));
+        allItems.add(new ItemObject(4,"현강농원", R.drawable.hyungang_farm));
+        allItems.add(new ItemObject(5,"우포농장", R.drawable.upo_farm));
+        allItems.add(new ItemObject(6,"아름농원", R.drawable.beautiful_farm));
+        allItems.add(new ItemObject(7,"현강농원", R.drawable.hyungang_farm));
 
         return allItems;
     }
+
+    public View.OnClickListener clickEvent = new View.OnClickListener() {
+        public void onClick(View v) {
+            int itemPosition = rView.getChildAdapterPosition(v);
+            int tempId = rowListItem.get(itemPosition).getId();
+            Toast.makeText(getApplicationContext(),String.valueOf(tempId),Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), FarmActivity.class);
+            intent.putExtra("id",String.valueOf(tempId));
+            startActivity(intent);
+
+        }
+    };
+
+    @Override
+    public void onBackPressed() {
+        long tempTime        = System.currentTimeMillis();
+        long intervalTime    = tempTime - backPressedTime;
+
+//            super.onBackPressed();
+        /**
+         * Back키 두번 연속 클릭 시 앱 종료
+         */
+        if ( 0 <= intervalTime && FINSH_INTERVAL_TIME >= intervalTime ) {
+            super.onBackPressed();
+        }
+        else {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(),"뒤로 가기 키을 한번 더 누르시면 종료됩니다.",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }

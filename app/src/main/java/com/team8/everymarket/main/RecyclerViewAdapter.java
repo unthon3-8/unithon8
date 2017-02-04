@@ -8,23 +8,33 @@ import android.view.ViewGroup;
 
 import com.team8.everymarket.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
 
     private List<ItemObject> itemList;
     private Context context;
+    View.OnClickListener mOnClickListener;
 
-    public RecyclerViewAdapter(Context context, List<ItemObject> itemList) {
+    public RecyclerViewAdapter(Context context, List<ItemObject> itemList, View.OnClickListener OnClickListener) {
         this.itemList = itemList;
         this.context = context;
+        this.mOnClickListener = OnClickListener;
     }
+
+    public void setAdapter(ArrayList<ItemObject> itemList){
+        this.itemList = itemList;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.farm_list_item, null);
         RecyclerViewHolders rcv = new RecyclerViewHolders(layoutView);
+        layoutView.setOnClickListener(mOnClickListener);
         return rcv;
     }
 

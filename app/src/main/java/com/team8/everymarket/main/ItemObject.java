@@ -2,10 +2,12 @@ package com.team8.everymarket.main;
 
 public class ItemObject {
 
+    private int id;
     private String name;
     private int photo;
 
-    public ItemObject(String name, int photo) {
+    public ItemObject(int id, String name, int photo) {
+        this.id = id;
         this.name = name;
         this.photo = photo;
     }
@@ -24,5 +26,13 @@ public class ItemObject {
 
     public void setPhoto(int photo) {
         this.photo = photo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
