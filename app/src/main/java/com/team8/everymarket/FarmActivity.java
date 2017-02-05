@@ -9,22 +9,44 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+
+import com.team8.everymarket.application.ApplicationController;
+import com.team8.everymarket.farm.Adapter;
+import com.team8.everymarket.farm.FarmListData;
+import com.team8.everymarket.farm.FarmResult;
+import com.team8.everymarket.network.NetworkService;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FarmActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    LinearLayoutManager mLayoutManager;
+    RecyclerView recyclerView;
+    ArrayList<FarmListData> mDatas;
+    Adapter adapter;
+    NetworkService service;
+    String farmName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farm);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        farmName = intent.getStringExtra("farmName");
 
         setSupportActionBar(toolbar);
 
@@ -37,6 +59,44 @@ public class FarmActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().findItem(R.id.nav_meal2).setChecked(true);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        // layoutManager 설정
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+
+
+        mDatas = new ArrayList<>();
+        service = ApplicationController.getInstance().getNetworkService();
+
+
+        Call<ArrayList> showProduct =  service.show_product("아름농원");
+        showProduct.enqueue(new Callback<ArrayList>() {
+            @Override
+            public void onResponse(Call<ArrayList> call, Response<ArrayList> response) {
+                if (response.isSuccessful()) {
+                    Log.d("aaa",response.body().toString());
+                    ArrayList farmLists = response.body();
+                    adapter.setAdapter(response.body());
+                    adapter.addCardItem(farmLists);
+                    mDatas = response.body();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList> call, Throwable t) {
+                Log.d("aaa","실패");
+            }
+        });
+
+        adapter = new Adapter(mDatas,this);
+        recyclerView.setAdapter(adapter);
+
     }
 
     @Override

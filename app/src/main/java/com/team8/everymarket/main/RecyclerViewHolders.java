@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import com.team8.everymarket.R;
 
+/**
+ * Created by ichaeeun on 2017. 2. 4..
+ */
 
 public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_product"
+            android:src="@drawable/apple_chip"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="170dp" />
+
+
+        <ImageView
+            android:id="@+id/pricetag"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/pricetag"
+            android:layout_alignBottom="@+id/iv_product"
+            android:layout_width="190dp"
+            android:layout_height="70dp" />
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="23dp"
+            android:layout_alignBottom="@+id/iv_product"
+            android:layout_alignParentLeft="true"
+            android:text="사과칩"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_product_price"
+            android:layout_toRightOf="@id/tv_product_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="23dp"
+            android:layout_alignBottom="@+id/iv_product"
+            android:text="5000원"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:layout_marginBottom="8dp"
+            android:layout_alignBottom="@+id/iv_product"
+            android:layout_alignRight="@+id/pricetag"
+            android:scaleType="centerCrop"
+            android:background="@android:color/transparent"
+            android:src="@drawable/cart_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorPrimary"
+        android:text="사계절 즐기는 동결건조 과일칩"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

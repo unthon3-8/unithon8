@@ -11,19 +11,23 @@ import com.team8.everymarket.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by ichaeeun on 2017. 2. 4..
+ */
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
 
-    private List<ItemObject> itemList;
+    private List<MainListData> itemList;
     private Context context;
     View.OnClickListener mOnClickListener;
 
-    public RecyclerViewAdapter(Context context, List<ItemObject> itemList, View.OnClickListener OnClickListener) {
+    public RecyclerViewAdapter(Context context, List<MainListData> itemList, View.OnClickListener OnClickListener) {
         this.itemList = itemList;
         this.context = context;
         this.mOnClickListener = OnClickListener;
     }
 
-    public void setAdapter(ArrayList<ItemObject> itemList){
+    public void setAdapter(ArrayList<MainListData> itemList){
         this.itemList = itemList;
         notifyDataSetChanged();
     }
@@ -32,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     @Override
     public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.farm_list_item, null);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_list_item, null);
         RecyclerViewHolders rcv = new RecyclerViewHolders(layoutView);
         layoutView.setOnClickListener(mOnClickListener);
         return rcv;

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth1"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/one"/>
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth2"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/two"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth3"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/three"/>
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth4"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/four"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth5"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/five"/>
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth6"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/six"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth7"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/seven"/>
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/booth8"
+            android:scaleType="centerCrop"
+            android:layout_width="190dp"
+            android:layout_height="160dp"
+            android:src="@drawable/eight"/>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

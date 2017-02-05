@@ -14,9 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.team8.everymarket.main.ItemObject;
+import com.team8.everymarket.main.MainListData;
 import com.team8.everymarket.main.RecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -29,14 +30,16 @@ import butterknife.ButterKnife;
  * Created by ichaeeun on 2017. 2. 4..
  */
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
 
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+
     private LinearLayoutManager lLayout;
     private RecyclerView rView;
-    private List<ItemObject> rowListItem;
+    private List<MainListData> rowListItem;
 
     //Back 키 두번 클릭 여부 확인
     private final long FINSH_INTERVAL_TIME = 2000;
@@ -48,6 +51,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        ImageButton booth1 = (ImageButton)findViewById(R.id.booth1);
+        ImageButton booth2 = (ImageButton)findViewById(R.id.booth2);
+        ImageButton booth3 = (ImageButton)findViewById(R.id.booth3);
+        ImageButton booth4 = (ImageButton)findViewById(R.id.booth4);
+        ImageButton booth5 = (ImageButton)findViewById(R.id.booth5);
+        ImageButton booth6 = (ImageButton)findViewById(R.id.booth6);
+        ImageButton booth7 = (ImageButton)findViewById(R.id.booth7);
+        ImageButton booth8 = (ImageButton)findViewById(R.id.booth8);
+
+        booth1.setOnClickListener(this);
+        booth2.setOnClickListener(this);
+        booth3.setOnClickListener(this);
+        booth4.setOnClickListener(this);
+        booth5.setOnClickListener(this);
+        booth6.setOnClickListener(this);
+        booth7.setOnClickListener(this);
+        booth8.setOnClickListener(this);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,13 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         rowListItem = getAllItemList();
-        lLayout = new LinearLayoutManager(MainActivity.this);
+       /* lLayout = new LinearLayoutManager(MainActivity.this);
 
         rView = (RecyclerView)findViewById(R.id.recycler_view);
         rView.setLayoutManager(lLayout);
 
         RecyclerViewAdapter rcAdapter = new RecyclerViewAdapter(MainActivity.this, rowListItem, clickEvent);
-        rView.setAdapter(rcAdapter);
+        rView.setAdapter(rcAdapter);*/
     }
 
     @Override
@@ -88,17 +108,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private List<ItemObject> getAllItemList(){
+    private List<MainListData> getAllItemList(){
 
-        List<ItemObject> allItems = new ArrayList<ItemObject>();
-        allItems.add(new ItemObject(0,"현강농원", R.drawable.hyungang_farm));
-        allItems.add(new ItemObject(1,"새아침농장", R.drawable.new_morning_farm));
-        allItems.add(new ItemObject(2,"우포농장", R.drawable.upo_farm));
-        allItems.add(new ItemObject(3,"아름농원", R.drawable.beautiful_farm));
-        allItems.add(new ItemObject(4,"현강농원", R.drawable.hyungang_farm));
-        allItems.add(new ItemObject(5,"우포농장", R.drawable.upo_farm));
-        allItems.add(new ItemObject(6,"아름농원", R.drawable.beautiful_farm));
-        allItems.add(new ItemObject(7,"현강농원", R.drawable.hyungang_farm));
+        List<MainListData> allItems = new ArrayList<MainListData>();
+        allItems.add(new MainListData(0,"현강농원", R.drawable.hyungang_farm));
+        allItems.add(new MainListData(1,"새아침농장", R.drawable.new_morning_farm));
+        allItems.add(new MainListData(2,"우포농장", R.drawable.upo_farm));
+        allItems.add(new MainListData(3,"아름농원", R.drawable.beautiful_farm));
+        allItems.add(new MainListData(4,"현강농원", R.drawable.hyungang_farm));
+        allItems.add(new MainListData(5,"우포농장", R.drawable.upo_farm));
+        allItems.add(new MainListData(6,"아름농원", R.drawable.beautiful_farm));
+        allItems.add(new MainListData(7,"현강농원", R.drawable.hyungang_farm));
 
         return allItems;
     }
@@ -134,4 +154,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent farmIntent = new Intent(MainActivity.this, FarmActivity.class);
+        switch (view.getId()) {
+            case R.id.booth1:
+                farmIntent.putExtra("FarmName", "새아침농장");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth2:
+                farmIntent.putExtra("FarmName", "현강농원");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth3:
+                farmIntent.putExtra("FarmName", "우포농장");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth4:
+                farmIntent.putExtra("FarmName", "아름농원");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth5:
+                farmIntent.putExtra("FarmName", "5");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth6:
+                farmIntent.putExtra("FarmName", "6");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth7:
+                farmIntent.putExtra("FarmName", "7");
+                startActivity(farmIntent);
+                break;
+            case R.id.booth8:
+                farmIntent.putExtra("FarmName", "8");
+                startActivity(farmIntent);
+                break;
+        }
+    }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/app_bar_basket"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.team8.everymarket.FarmActivity">
+    tools:context="com.team8.everymarket.BasketActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/appbar_view"
@@ -19,28 +19,93 @@
             android:theme="@style/AppTheme.AppBarOverlay">
 
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary">
 
-        </android.support.design.widget.AppBarLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/farm_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="230dp"
+                        android:src="@drawable/upo_farm"
+                        android:scaleType="centerCrop"
+                        android:fitsSystemWindows="true"
+                        app:layout_collapseMode="parallax"/>
+
+
+                    <RelativeLayout
+                        android:layout_below="@id/farm_image"
+                        android:background="@drawable/info"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:id="@+id/tv_farm_name"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginLeft="40dp"
+                        android:layout_centerVertical="true"
+                        android:text="ZEN의 블루베리 농장"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tv_place"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="40dp"
+                            android:layout_alignParentRight="true"
+                            android:text="캐나다 뱅쿠버 외곽의 습지"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tv_phone"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_below="@id/tv_place"
+                            android:layout_marginRight="40dp"
+                            android:layout_alignParentRight="true"
+                            android:text="010-1212-1212"
+                            android:textSize="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
+                android:padding="8dp"
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical" />
-
         </RelativeLayout>
-
     </android.support.design.widget.CoordinatorLayout>
 
 
